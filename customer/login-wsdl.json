@@ -1,0 +1,4 @@
+{
+    "customer":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_LOGIN&receiverParty=&receiverService=&interface=SI_customer_login_req&interfaceNamespace=https://sap.dashboard.com",
+    "profileDisplay":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_PRO_DIS&receiverParty=&receiverService=&interface=SI_cus_prof_dis_req&interfaceNamespace=https://sap.dashboard.com"
+}
