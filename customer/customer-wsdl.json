@@ -1,0 +1,8 @@
+{
+    "customer":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_LOGIN&receiverParty=&receiverService=&interface=SI_customer_login_req&interfaceNamespace=https://sap.dashboard.com",
+    "profileDisplay":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_PRO_DIS&receiverParty=&receiverService=&interface=SI_cus_prof_dis_req&interfaceNamespace=https://sap.dashboard.com",
+    "profileUpdate":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_PRO_UP&receiverParty=&receiverService=&interface=SI_cus_pro_up_req&interfaceNamespace=https://sap.dashboard.com",
+    "inquiryData":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_INQUIRY_SENDER&receiverParty=&receiverService=&interface=SI_cus_inquirydata_req&interfaceNamespace=https://sap.dashboard.com",
+    "deliveryList":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_DELIVERY_LIST&receiverParty=&receiverService=&interface=SI_cus_delivery_list_req&interfaceNamespace=https://sap.dashboard.com",
+    "invoiceDetails":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_CUSTOMER_INVOICE_DETAILS&receiverParty=&receiverService=&interface=SI_cus_invoice_req&interfaceNamespace=https://sap.dashboard.com"
+}

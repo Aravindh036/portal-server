@@ -1,5 +1,5 @@
 const parser = require('xml-js');
-const loginWSDL = require('./login-wsdl.json');
+const customerWSDL = require('./customer-wsdl.json');
 const http = require('follow-redirects').http;
 
 function login (req, res) {
@@ -7,7 +7,7 @@ function login (req, res) {
 		'method': 'POST',
 		'port': 50000,
 		'host': 'dxktpipo.kaarcloud.com',
-		'path': loginWSDL.customer,
+		'path': customerWSDL.customer,
 		'headers': {
 			'Content-Type': 'application/xml',
 			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
@@ -49,7 +49,7 @@ function profileDisplay(req, res){
 		'method': 'POST',
 		'port': 50000,
 		'host': 'dxktpipo.kaarcloud.com',
-        'path': loginWSDL.profileDisplay,
+        'path': customerWSDL.profileDisplay,
 		'headers': {
 			'Content-Type': 'application/xml',
 			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
@@ -91,7 +91,7 @@ function profileUpdate(req, res){
 		'method': 'POST',
 		'port': 50000,
 		'host': 'dxktpipo.kaarcloud.com',
-        'path': loginWSDL.profileUpdate,
+        'path': customerWSDL.profileUpdate,
 		'headers': {
 			'Content-Type': 'application/xml',
 			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
@@ -143,7 +143,7 @@ function inquiryData(req, res){
 		'method': 'POST',
 		'port': 50000,
 		'host': 'dxktpipo.kaarcloud.com',
-        'path': loginWSDL.inquiryData,
+        'path': customerWSDL.inquiryData,
 		'headers': {
 			'Content-Type': 'application/xml',
 			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
@@ -180,5 +180,91 @@ function inquiryData(req, res){
 	req1.end();
 }
 
+function deliveryList(req, res){
+    var options = {
+		'method': 'POST',
+		'port': 50000,
+		'host': 'dxktpipo.kaarcloud.com',
+        'path': customerWSDL.inquiryData,
+		'headers': {
+			'Content-Type': 'application/xml',
+			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
+		},
+		'maxRedirects': 20
+	};    
+	const postData =  `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sap="https://sap.dashboard.com">
+							<soapenv:Header/>
+							<soapenv:Body>
+							<sap:MT_cus_delivery_list_req>
+								<customer_id>0000000018</customer_id>
+							</sap:MT_cus_delivery_list_req>
+							</soapenv:Body>
+						</soapenv:Envelope>`;
+	console.log(postData);
+	const req1 = http.request(options, function (res1) {
+		const chunks = [];
+		res1.on("data", function (chunk) {
+			chunks.push(chunk);
+		});
+		res1.on("end", function (chunk) {
+			const body = Buffer.concat(chunks);
+            const xml = body.toString();
+			const data = parser.xml2json(xml, {compact: true, spaces: 4});
+            res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
+		});
+		res1.on("error", function (error) {
+			console.error(error);
+		});
+	});
 
-module.exports = {login, profileDisplay, profileUpdate, inquiryData};
+	req1.write(postData);
+
+	req1.end();
+}
+
+
+function invoiceDetails(req, res){
+    var options = {
+		'method': 'POST',
+		'port': 50000,
+		'host': 'dxktpipo.kaarcloud.com',
+        'path': customerWSDL.invoiceDetails,
+		'headers': {
+			'Content-Type': 'application/xml',
+			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
+		},
+		'maxRedirects': 20
+	};    
+	const postData =  `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sap="https://sap.dashboard.com">
+							<soapenv:Header/>
+							<soapenv:Body>
+							<sap:MT_cus_invoice_req>
+								<customer_id>0000000018</customer_id>
+							</sap:MT_cus_invoice_req>
+							</soapenv:Body>
+						</soapenv:Envelope>`;
+	console.log(postData);
+	const req1 = http.request(options, function (res1) {
+		const chunks = [];
+		res1.on("data", function (chunk) {
+			chunks.push(chunk);
+		});
+		res1.on("end", function (chunk) {
+			const body = Buffer.concat(chunks);
+            const xml = body.toString();
+			const data = parser.xml2json(xml, {compact: true, spaces: 4});
+            res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_invoice_res"])
+		});
+		res1.on("error", function (error) {
+			console.error(error);
+		});
+	});
+
+	req1.write(postData);
+
+	req1.end();
+}
+
+
+
+module.exports = {login, profileDisplay, profileUpdate, inquiryData, deliveryList, invoiceDetails};
