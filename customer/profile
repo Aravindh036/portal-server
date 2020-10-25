@@ -1,0 +1,15 @@
+  data: STATUS type string,
+          WA_AUTH TYPE ZSCUS_PROFILE.
+    SELECT * FROM ZSCUS_PROFILE INTO WA_AUTH WHERE CUSTOMER_ID EQ INPUT-MT_cus_prof_dis_req-USER_ID.
+    ENDSELECT.
+
+    OUTPUT-MT_cus_prof_dis_res-CUSTOMER_ID = WA_AUTH-CUSTOMER_ID.
+    OUTPUT-MT_cus_prof_dis_res-NAME = WA_AUTH-NAME.
+    OUTPUT-MT_cus_prof_dis_res-COMPANY_NAME = WA_AUTH-COMPANY_NAME.
+    OUTPUT-MT_cus_prof_dis_res-ADDRESS = WA_AUTH-ADDRESS.
+    OUTPUT-MT_cus_prof_dis_res-CITY = WA_AUTH-CITY.
+    OUTPUT-MT_cus_prof_dis_res-COUNTRY = WA_AUTH-COUNTRY.
+    OUTPUT-MT_cus_prof_dis_res-MAIL_ID = WA_AUTH-MAIL_ID.
+    OUTPUT-MT_cus_prof_dis_res-PHONE_NUMBER = WA_AUTH-PHONE_NUMBER.
+    OUTPUT-MT_cus_prof_dis_res-FAX_NUMBER = WA_AUTH-FAX_NUMBER.
+    OUTPUT-MT_cus_prof_dis_res-GSTIN_NUMBER = WA_AUTH-GSTIN_NUMBER.
