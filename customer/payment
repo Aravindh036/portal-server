@@ -1,0 +1,20 @@
+  method ZII_SI_CUS_PAYMENT_RES~SI_CUS_PAYMENT_RES.
+  DATA: it_bsid type TABLE OF bsid,
+        wa_bsid type bsid,
+        wa1 type ZDT_CUS_PAYMENT_RES_RECORDS,
+        it1 type ZDT_CUS_PAYMENT_RES_RECORD_TAB.
+    SELECT * FROM bsid INTO TABLE it_bsid where KUNAG eq INPUT-MT_CUS_PAYMENT_REQ-user_id.
+     LOOP AT it_bsid INTO wa_bsid.
+       CLEAR wa1.
+       WA1-BUKRS = wa_bsid-BUKRS.
+       WA1-GJAHR = wa_bsid-GJAHR.
+       WA1-BELNR = wa_bsid-BELNR.
+       WA1-BUDAT = wa_bsid-BUDAT.
+       WA1-WAERS = wa_bsid-WAERS.
+       WA1-SHKZG = wa_bsid-SHKZG.
+       WA1-DMBTR = wa_bsid-DMBTR.
+       WA1-ZTERM = wa_bsid-ZTERM.
+       WA1-SKNTO = wa_bsid-SKNTO.
+     ENDLOOP.
+     OUTPUT-MT_CUS_PAYMENT_RES-records = IT1.
+  endmethod.

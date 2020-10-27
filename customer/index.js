@@ -60,7 +60,7 @@ function profileDisplay(req, res){
                             <soapenv:Header/>
                             <soapenv:Body>
                             <sap:MT_cus_prof_dis_req>
-                                <user_id>${req.body.userID}</user_id>
+                                <user_id>0000000018</user_id>
                             </sap:MT_cus_prof_dis_req>
                             </soapenv:Body>
                         </soapenv:Envelope>`;
@@ -122,7 +122,8 @@ function profileUpdate(req, res){
 		});
 		res1.on("end", function (chunk) {
 			const body = Buffer.concat(chunks);
-            const xml = body.toString();
+			const xml = body.toString();
+			console.log(xml);
             const data = parser.xml2json(xml, {compact: true, spaces: 4});
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_pro_up_res"])
 		});
@@ -178,6 +179,48 @@ function inquiryData(req, res){
 	req1.end();
 }
 
+
+function paymentAndAging(req, res){
+    var options = {
+		'method': 'POST',
+		'port': 50000,
+		'host': 'dxktpipo.kaarcloud.com',
+        'path': customerWSDL.paymentAndAging,
+		'headers': {
+			'Content-Type': 'application/xml',
+			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
+		},
+		'maxRedirects': 20
+	};    
+	const postData =  `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sap="https://sap.dashboard.com">
+							<soapenv:Header/>
+							<soapenv:Body>
+							<sap:MT_cus_payment_req>
+								<user_id>0000000018</user_id>
+							</sap:MT_cus_payment_req>
+							</soapenv:Body>
+						</soapenv:Envelope>`;
+	const req1 = http.request(options, function (res1) {
+		const chunks = [];
+		res1.on("data", function (chunk) {
+			chunks.push(chunk);
+		});
+		res1.on("end", function (chunk) {
+			const body = Buffer.concat(chunks);
+            const xml = body.toString();
+			const data = parser.xml2json(xml, {compact: true, spaces: 4});
+            res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_payment_res"])
+		});
+		res1.on("error", function (error) {
+			console.error(error);
+		});
+	});
+
+	req1.write(postData);
+
+	req1.end();
+}
+
 function deliveryList(req, res){
     var options = {
 		'method': 'POST',
@@ -205,7 +248,7 @@ function deliveryList(req, res){
 		});
 		res1.on("end", function (chunk) {
 			const body = Buffer.concat(chunks);
-            const xml = body.toString();
+			const xml = body.toString();
 			const data = parser.xml2json(xml, {compact: true, spaces: 4});
 			console.log(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
@@ -264,4 +307,4 @@ function invoiceDetails(req, res){
 
 
 
-module.exports = {login, profileDisplay, profileUpdate, inquiryData, deliveryList, invoiceDetails};
+module.exports = {login, profileDisplay, profileUpdate, inquiryData, deliveryList, invoiceDetails, paymentAndAging};
