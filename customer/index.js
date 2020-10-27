@@ -115,7 +115,6 @@ function profileUpdate(req, res){
 							</sap:MT_cus_pro_up_req>
 							</soapenv:Body>
 						</soapenv:Envelope>`;
-	console.log(postData);
 	const req1 = http.request(options, function (res1) {
 		const chunks = [];
 		res1.on("data", function (chunk) {
@@ -154,11 +153,10 @@ function inquiryData(req, res){
 							<soapenv:Header/>
 							<soapenv:Body>
 							<sap:MT_cus_inquirydata_req>
-								<customer_id>0000000018</customer_id>
+								<customer_id>${req.body.userID}</customer_id>
 							</sap:MT_cus_inquirydata_req>
 							</soapenv:Body>
 						</soapenv:Envelope>`;
-	console.log(postData);
 	const req1 = http.request(options, function (res1) {
 		const chunks = [];
 		res1.on("data", function (chunk) {
@@ -185,7 +183,7 @@ function deliveryList(req, res){
 		'method': 'POST',
 		'port': 50000,
 		'host': 'dxktpipo.kaarcloud.com',
-        'path': customerWSDL.inquiryData,
+        'path': customerWSDL.deliveryList,
 		'headers': {
 			'Content-Type': 'application/xml',
 			'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ==',
@@ -196,11 +194,10 @@ function deliveryList(req, res){
 							<soapenv:Header/>
 							<soapenv:Body>
 							<sap:MT_cus_delivery_list_req>
-								<customer_id>0000000018</customer_id>
+								<customer_id>${req.body.userID}</customer_id>
 							</sap:MT_cus_delivery_list_req>
 							</soapenv:Body>
 						</soapenv:Envelope>`;
-	console.log(postData);
 	const req1 = http.request(options, function (res1) {
 		const chunks = [];
 		res1.on("data", function (chunk) {
@@ -210,6 +207,7 @@ function deliveryList(req, res){
 			const body = Buffer.concat(chunks);
             const xml = body.toString();
 			const data = parser.xml2json(xml, {compact: true, spaces: 4});
+			console.log(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
 		});
 		res1.on("error", function (error) {
@@ -239,11 +237,10 @@ function invoiceDetails(req, res){
 							<soapenv:Header/>
 							<soapenv:Body>
 							<sap:MT_cus_invoice_req>
-								<customer_id>0000000018</customer_id>
+								<customer_id>${req.body.userID}</customer_id>
 							</sap:MT_cus_invoice_req>
 							</soapenv:Body>
 						</soapenv:Envelope>`;
-	console.log(postData);
 	const req1 = http.request(options, function (res1) {
 		const chunks = [];
 		res1.on("data", function (chunk) {
