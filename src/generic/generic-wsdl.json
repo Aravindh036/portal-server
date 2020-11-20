@@ -1,0 +1,6 @@
+{
+    "profileDisplay":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_GENERIC_PROFILE_DISPLAY&receiverParty=&receiverService=&interface=SI_generic_pro_dis_req&interfaceNamespace=https://sap.dashboard.com",
+    "profileUpdate":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BS_GENERIC_PROFILE_UPDATE&receiverParty=&receiverService=&interface=SI_generic_pro_up_req&interfaceNamespace=https://sap.dashboard.com",
+    "login":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_GENERIC_LOGIN&receiverParty=&receiverService=&interface=SI_generic_login_req&interfaceNamespace=https://sap.dashboard.com",
+    "genericDashboardDisplay":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_GENERIC_DASHBOARD&receiverParty=&receiverService=&interface=SI_GenericDashboard_req&interfaceNamespace=https://sap.dashboard.com"
+}

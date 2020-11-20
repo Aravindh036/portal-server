@@ -1,0 +1,21 @@
+
+    DATA: it_RSEG type TABLE OF RSEG,
+          wa_RSEG type RSEG,
+          wa1 type ZDT_VENDOR_QUOTATION_RES_RECOR,
+          it1 type ZDT_VENDOR_QUOTATION_RES_R_TAB.
+    SELECT * FROM RSEG INTO TABLE it_RSEG where LIFNR eq INPUT-MT_VENDOR_QUOTATION_REQ-user_id.
+     LOOP AT it_RSEG INTO wa_RSEG.
+       CLEAR wa1.
+       WA1-BELNR = wa_RSEG-BE LNR.
+       WA1-GJAHR = wa_RSEG-GJAHR.
+       WA1-BUZEI = wa_RSEG-BUZEI.
+       WA1-EBELN = wa_RSEG-EBELN.
+       WA1-MATNR = wa_RSEG-MATNR.
+       WA1-WERKS = wa_RSEG-WERKS.
+       WA1-WERKS = wa_RSEG-WERKS.
+       WA1-WRBTR = wa_RSEG-WRBTR.
+       WA1-MENGE = wa_RSEG-MENGE.
+       WA1-MEINS = wa_RSEG-MEINS.
+       APPEND WA1 TO IT1.
+     ENDLOOP.
+     OUTPUT-MT_VENDOR_QUOTATION_RES-records = IT1.

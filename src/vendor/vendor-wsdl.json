@@ -1,0 +1,6 @@
+{
+    "quotationPurchase":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_VENDOR_QUOTATION_PURCHASE&receiverParty=&receiverService=&interface=SI_vendor_quotation_req&interfaceNamespace=https://sap.dashboard.com",
+    "goodsReceipt":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_VENDOR_GOODS_RECEIPT&receiverParty=&receiverService=&interface=SI_vendor_goods_req&interfaceNamespace=https://sap.dashboard.com",
+    "invoice":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BS_VENDOR_INVOICE&receiverParty=&receiverService=&interface=SI_vendor_invoice_req&interfaceNamespace=https://sap.dashboard.com",
+    "payment":"http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_PAYMENT_OVERDUE&receiverParty=&receiverService=&interface=SI_vendor_payment_req&interfaceNamespace=https://sap.dashboard.com"
+}

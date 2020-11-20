@@ -123,7 +123,6 @@ function profileUpdate(req, res){
 		res1.on("end", function (chunk) {
 			const body = Buffer.concat(chunks);
 			const xml = body.toString();
-			console.log(xml);
             const data = parser.xml2json(xml, {compact: true, spaces: 4});
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_pro_up_res"])
 		});
@@ -165,7 +164,7 @@ function inquiryData(req, res){
 		});
 		res1.on("end", function (chunk) {
 			const body = Buffer.concat(chunks);
-            const xml = body.toString();
+			const xml = body.toString();
 			const data = parser.xml2json(xml, {compact: true, spaces: 4});
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_inquirydata_res"])
 		});
@@ -250,7 +249,6 @@ function deliveryList(req, res){
 			const body = Buffer.concat(chunks);
 			const xml = body.toString();
 			const data = parser.xml2json(xml, {compact: true, spaces: 4});
-			console.log(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_delivery_list_res"])
 		});
 		res1.on("error", function (error) {
@@ -284,6 +282,7 @@ function invoiceDetails(req, res){
 							</sap:MT_cus_invoice_req>
 							</soapenv:Body>
 						</soapenv:Envelope>`;
+	console.log(postData)
 	const req1 = http.request(options, function (res1) {
 		const chunks = [];
 		res1.on("data", function (chunk) {
@@ -291,8 +290,9 @@ function invoiceDetails(req, res){
 		});
 		res1.on("end", function (chunk) {
 			const body = Buffer.concat(chunks);
-            const xml = body.toString();
+			const xml = body.toString();
 			const data = parser.xml2json(xml, {compact: true, spaces: 4});
+			console.log(data);
             res.send(JSON.parse(data)["SOAP:Envelope"]["SOAP:Body"]["ns0:MT_cus_invoice_res"])
 		});
 		res1.on("error", function (error) {
